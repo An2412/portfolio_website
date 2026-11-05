@@ -1,0 +1,5 @@
+# Cloudflare Pages (direct upload / CLI)
+# Change `name` if your Pages project uses a different name.
+name = "info-vibe-web"
+compatibility_date = "2026-11-05"
+pages_build_output_dir = "dist"

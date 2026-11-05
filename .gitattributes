@@ -1,0 +1,18 @@
+* text=auto eol=lf
+
+# Binary assets must stay untouched
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+
+# Keep deploy/config files LF so Cloudflare and Docker behave the same
+*.sh text eol=lf
+Dockerfile text eol=lf
+nginx.conf text eol=lf
+_redirects text eol=lf
+_headers text eol=lf
