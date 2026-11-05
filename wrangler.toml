@@ -1,5 +1,14 @@
-# Cloudflare Pages (direct upload / CLI)
-# Change `name` if your Pages project uses a different name.
+# Cloudflare Workers + static assets (Workers Builds)
+# Deploy command: npx wrangler deploy
+# Build command (dashboard): npm run build
+#
+# `name` MUST match the Worker name in the Cloudflare dashboard.
+# Change it here if your project uses a different name.
 name = "info-vibe-web"
 compatibility_date = "2026-11-05"
-pages_build_output_dir = "dist"
+
+[assets]
+directory = "./dist"
+# SPA fallback: unknown paths return index.html with 200, so React Router
+# handles /projects, /about, /cv-mn on hard refresh.
+not_found_handling = "single-page-application"

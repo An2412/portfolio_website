@@ -50,6 +50,36 @@ Root directory: để trống (hoặc `/`)
 6. Bấm **Save and Deploy**. Lần build đầu mất khoảng 1–3 phút.
 7. Cloudflare cấp URL dạng `https://<project-name>.pages.dev`.
 
+## 2b. Nếu bạn tạo Worker thay vì Pages (Workers Builds)
+
+Cloudflare hiện khuyến khích dùng **Workers + static assets**. Nếu dashboard chạy `npx wrangler deploy` (thay vì `wrangler pages deploy`), dùng cấu hình này — `wrangler.toml` trong repo đã đặt sẵn:
+
+```toml
+name = "info-vibe-web"
+compatibility_date = "2026-11-05"
+
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
+```
+
+Trong **Settings → Build** của Worker:
+
+| Trường | Giá trị |
+| --- | --- |
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy` |
+| Root directory | để trống |
+
+Biến cho Vite phải nằm ở **Settings → Build → Build variables and secrets** (không phải mục `Variables & Secrets` dùng lúc runtime):
+
+```
+VITE_SUPABASE_URL=...
+VITE_SUPABASE_PUBLISHABLE_KEY=...
+```
+
+Sau đó bấm **Retry deployment** hoặc push một commit mới.
+
 ## 3. Deploy bằng Wrangler CLI (tuỳ chọn)
 
 ```bash
